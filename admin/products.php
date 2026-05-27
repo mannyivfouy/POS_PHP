@@ -21,12 +21,12 @@ ob_start();
     </h1>
   </div>
 
-  <a href="add-product.php"
+  <button onclick="openAddModal()"
     class="bg-[#20496b] hover:bg-[#17364f] text-white px-5 py-3 rounded-xl font-medium transition">
 
     <i class="fa-solid fa-plus mr-2"></i>
     Add Product
-  </a>
+  </button>
 </div>
 
 <!-- Product Table -->
@@ -117,13 +117,18 @@ ob_start();
               <td class="p-4">
                 <div class="flex items-center justify-center gap-2">
 
-                  <a href="edit-product.php?id=<?php echo $row['id']; ?>"
+                  <button onclick="openEditModal(
+                    <?= $row['id'] ?>,
+                    '<?= addslashes($row['name']) ?>',
+                    <?= $row['price'] ?>,
+                    <?= $row['qty'] ?>
+                  )"
                     class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition">
 
                     <i class="fa-solid fa-pen"></i>
-                  </a>
+                  <button 
 
-                  <a href="../actions/product/delete.php?id=<?php echo $row['id']; ?>"
+                  <a href="delete_product.php?id=<?php echo $row['id']; ?>"
                     onclick="return confirm('Delete this product?')"
                     class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition">
 
@@ -143,7 +148,50 @@ ob_start();
 
         <?php } ?>
       </tbody>
-    </table>
+    </table>  
+  </div>
+</div>
+
+<!-- Modal -->
+ <div id="productModal"
+  class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+
+  <div class="bg-white w-96 p-6 rounded-2xl shadow-lg">
+
+    <h2 id="modalTitle" class="text-xl font-bold mb-4">Add Product</h2>
+
+    <form id="productForm" method="POST">
+
+      <input type="hidden" name="id" id="product_id">
+
+      <input type="text" name="name" id="name"
+        placeholder="Product Name"
+        class="border p-2 w-full mb-3 rounded">
+
+      <input type="number" name="price" id="price"
+        placeholder="Price"
+        class="border p-2 w-full mb-3 rounded">
+
+      <input type="number" name="qty" id="qty"
+        placeholder="Quantity"
+        class="border p-2 w-full mb-4 rounded">
+
+      <div class="flex justify-end gap-2">
+
+        <button type="button" onclick="closeModal()"
+          class="px-4 py-2 bg-gray-400 text-white rounded">
+          Cancel
+        </button>
+
+        <button type="submit"
+          class="px-4 py-2 bg-green-500 text-white rounded">
+          Save
+        </button>
+
+      </div>
+
+    </form>
+
   </div>
 </div>
 

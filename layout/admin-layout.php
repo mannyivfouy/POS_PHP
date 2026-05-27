@@ -32,5 +32,7 @@
       </main>
     </div>
   </div>
+
+  <script src="/POS_Final/assets/js/products.js"></script>
 </body>
 </html>
