@@ -2,7 +2,7 @@
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
-<div class="w-64 bg-[#20496b] text-white min-h-screen p-6">
+<div class="w-64 bg-[#20496b] text-white p-6">
   <h1 class="text-2xl font-bold mb-10 text-center">
     POS SYSTEM
   </h1>
@@ -32,6 +32,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
         <i class="fa-solid fa-box"></i>
         Products
+      </a>
+    </li>
+
+    <li>
+      <a href="pos.php" class="flex items-center gap-3 p-3 rounded-lg transition
+         <?= $current_page == 'pos.php' ? 'bg-white/20' : 'hover:bg-white/10' ?>">
+
+        <i class="fa-solid fa-cart-shopping"></i>
+        POS
       </a>
     </li>
 

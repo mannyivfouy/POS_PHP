@@ -15,12 +15,16 @@
   <title>Document</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="/POS_Final/assets/css/style.css">
 </head>
-<body class="bg-gray-100">
-  <div class="flex min-h-screen">
+<body class="bg-gray-100 min-h-screen flex flex-col">
+  <?php include_once __DIR__ . "/../components/header.php"?>
+
+  <div class="flex flex-1">
     <?php include_once __DIR__ . "/../components/sidebar.php"; ?>
 
     <div class="flex-1 flex flex-col">
+
       <?php include_once __DIR__ . "/../components/navbar.php"; ?>
 
       <main class="p-6">
