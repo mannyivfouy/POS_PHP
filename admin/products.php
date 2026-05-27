@@ -32,7 +32,7 @@ ob_start();
 <!-- Product Table -->
 <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
 
-  <div class="p-5 border-b">
+  <!-- <div class="p-5 border-b">
     <div class="relative w-80">
       <span class="absolute left-4 top-3 text-gray-400">
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -41,11 +41,11 @@ ob_start();
       <input type="text" placeholder="Search product..."
         class="w-full border border-gray-300 rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b]">
     </div>
-  </div>
+  </div> -->
 
   <div class="overflow-x-auto">
     <table class="w-full">
-      <thead class="bg-gray-100">
+      <thead class="bg-gray-200">
         <tr class="text-left text-gray-600 text-sm uppercase">
           <th class="p-4">#</th>
           <th class="p-4">Product</th>
