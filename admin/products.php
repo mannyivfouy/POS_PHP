@@ -1,5 +1,5 @@
 <?php
-  include_once __DIR__ . "/../includes/auth.php";
+include_once __DIR__ . "/../includes/auth.php";
 
 if (!isset($_SESSION['user_id'])) {
   header("Location: /POS_Final/auth/login.php");
@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 
 include_once __DIR__ . "/../config/db.php";
 
-$query = "SELECT * FROM products ORDER BY id DESC";
+$query = "SELECT * FROM products";
 $result = mysqli_query($conn, $query);
 
 ob_start();
@@ -19,10 +19,6 @@ ob_start();
     <h1 class="text-3xl font-bold text-gray-800">
       Products
     </h1>
-
-    <p class="text-gray-500 mt-1">
-      Manage your products here
-    </p>
   </div>
 
   <a href="add-product.php"
@@ -54,8 +50,9 @@ ob_start();
           <th class="p-4">#</th>
           <th class="p-4">Product</th>
           <th class="p-4">Price</th>
-          <th class="p-4">Qty</th>
+          <th class="p-4">Quantity</th>
           <th class="p-4">Created At</th>
+          <th class="p-4">Updated At</th>
           <th class="p-4 text-center">Action</th>
         </tr>
       </thead>
@@ -85,26 +82,36 @@ ob_start();
 
                 </div>
               </td>
-
+                
               <td class="p-4 text-gray-700">
                 $
                 <?php echo number_format($row['price'], 2); ?>
               </td>
 
               <td class="p-4">
-                <?php if ($row['qty'] > 0) { ?>
-                  <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-                    <?php echo $row['qty']; ?> In Stock
-                  </span>
-                <?php } else { ?>
+                <?php if ($row['qty'] <= 0) { ?>
                   <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm">
                     Out of Stock
+                  </span>
+
+                <?php } elseif ($row['qty'] < 50) { ?>
+                  <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
+                    <?php echo $row['qty']; ?> Low Stock
+                  </span>
+
+                <?php } else { ?>
+                  <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                    <?php echo $row['qty']; ?> In Stock
                   </span>
                 <?php } ?>
               </td>
 
               <td class="p-4 text-gray-500">
                 <?php echo date('d M Y', strtotime($row['created_at'])); ?>
+              </td>
+
+              <td class="p-4 text-gray-500">
+                <?php echo date('d M Y', strtotime($row['updated_at'])); ?>
               </td>
 
               <td class="p-4">
@@ -122,13 +129,10 @@ ob_start();
 
                     <i class="fa-solid fa-trash"></i>
                   </a>
-
                 </div>
               </td>
-
             </tr>
           <?php } ?>
-
         <?php } else { ?>
 
           <tr>
