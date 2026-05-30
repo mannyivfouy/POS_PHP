@@ -34,5 +34,6 @@
   </div>
 
   <script src="/POS_Final/assets/js/products.js"></script>
+  <!-- <script src="/POS_Final/assets/js/users.js"></script> -->
 </body>
 </html>

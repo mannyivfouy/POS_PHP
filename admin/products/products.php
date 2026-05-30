@@ -131,13 +131,13 @@ ob_start();
                     ); return false;"
                     class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition">
                     <i class="fa-solid fa-pen"></i>
-                    <a>
+                  </a>
 
-                      <a href="delete_product.php?id=<?= $row['id'] ?>" onclick="return confirm('Delete this product?')"
-                        class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition">
+                  <a href="delete_product.php?id=<?= $row['id'] ?>" onclick="return confirm('Delete this product?')"
+                    class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition">
 
-                        <i class="fa-solid fa-trash"></i>
-                      </a>
+                    <i class="fa-solid fa-trash"></i>
+                  </a>
                 </div>
               </td>
             </tr>
@@ -190,14 +190,14 @@ ob_start();
             <i class="fa-solid fa-dollar-sign"></i>
           </span>
 
-          <input type="text" name="name" id="price" placeholder="Enter Product Name"
+          <input type="text" name="price" id="price" placeholder="Enter Product Name"
             class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
         </div>
       </div>
 
       <div>
         <label for="qty" class="block mb-2 text-gray-700 font-medium">
-          Product Price
+          Product Quantity
         </label>
         <div class="relative">
           <span class="absolute left-4 top-3 text-gray-400">
