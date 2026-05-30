@@ -1,12 +1,12 @@
 <?php
-include_once __DIR__ . "/../includes/auth.php";
+include_once __DIR__ . "/../../includes/auth.php";
 
 if (!isset($_SESSION['user_id'])) {
   header("Location: /POS_Final/auth/login.php");
   exit;
 }
 
-include_once __DIR__ . "/../config/db.php";
+include_once __DIR__ . "/../../config/db.php";
 
 $no = 1;
 $query = "SELECT * FROM products";
@@ -187,5 +187,5 @@ ob_start();
 <?php
 $content = ob_get_clean();
 
-include_once __DIR__ . "/../layout/admin-layout.php";
+include_once __DIR__ . "/../../layout/admin-layout.php";
 ?>
