@@ -49,6 +49,7 @@
         <tr class="text-left text-gray-600 text-sm uppercase">
           <th class="p-4">#</th>
           <th class="p-4">Username</th>
+          <th class="p-4">FullName</th>
           <th class="p-4">Phone Number</th>
           <th class="p-4">Email</th>
           <th class="p-4">Created At</th>
@@ -81,6 +82,10 @@
                   </div>
 
                 </div>
+              </td>
+
+              <td class="p-4 text-gray-500">
+                <?php echo $row['fullname']?>
               </td>
 
               <td class="p-4 text-gray-500">

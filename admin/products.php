@@ -8,6 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 
 include_once __DIR__ . "/../config/db.php";
 
+$no = 1;
 $query = "SELECT * FROM products";
 $result = mysqli_query($conn, $query);
 
@@ -21,12 +22,11 @@ ob_start();
     </h1>
   </div>
 
-  <button onclick="openAddModal()"
+  <a href="add_product.php" onclick="openAddModal(); return false;"
     class="bg-[#20496b] hover:bg-[#17364f] text-white px-5 py-3 rounded-xl font-medium transition">
-
     <i class="fa-solid fa-plus mr-2"></i>
     Add Product
-  </button>
+  </a>
 </div>
 
 <!-- Product Table -->
@@ -64,7 +64,7 @@ ob_start();
             <tr class="border-b hover:bg-gray-50 transition">
 
               <td class="p-4 font-medium text-gray-700">
-                <?php echo $row['id']; ?>
+                <?php echo $no++ ; ?>
               </td>
 
               <td class="p-4">
@@ -82,7 +82,7 @@ ob_start();
 
                 </div>
               </td>
-                
+
               <td class="p-4 text-gray-700">
                 $
                 <?php echo number_format($row['price'], 2); ?>
@@ -117,19 +117,17 @@ ob_start();
               <td class="p-4">
                 <div class="flex items-center justify-center gap-2">
 
-                  <button onclick="openEditModal(
-                    <?= $row['id'] ?>,
-                    '<?= addslashes($row['name']) ?>',
-                    <?= $row['price'] ?>,
-                    <?= $row['qty'] ?>
-                  )"
+                  <a href="edit_product.php?id=<?= $row['id'] ?>" onclick="openEditModal(
+                      <?= $row['id'] ?>,
+                      '<?= addslashes($row['name']) ?>',
+                      <?= $row['price'] ?>,
+                      <?= $row['qty'] ?>
+                    ); return false;"
                     class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition">
-
                     <i class="fa-solid fa-pen"></i>
-                  <button 
+                  <a>
 
-                  <a href="delete_product.php?id=<?php echo $row['id']; ?>"
-                    onclick="return confirm('Delete this product?')"
+                  <a href="delete_product.php?id=<?= $row['id'] ?>" onclick="return confirm('Delete this product?')"
                     class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition">
 
                     <i class="fa-solid fa-trash"></i>
@@ -148,13 +146,12 @@ ob_start();
 
         <?php } ?>
       </tbody>
-    </table>  
+    </table>
   </div>
 </div>
 
 <!-- Modal -->
- <div id="productModal"
-  class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+<div id="productModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 
   <div class="bg-white w-96 p-6 rounded-2xl shadow-lg">
 
@@ -164,27 +161,19 @@ ob_start();
 
       <input type="hidden" name="id" id="product_id">
 
-      <input type="text" name="name" id="name"
-        placeholder="Product Name"
-        class="border p-2 w-full mb-3 rounded">
+      <input type="text" name="name" id="name" placeholder="Product Name" class="border p-2 w-full mb-3 rounded">
 
-      <input type="number" name="price" id="price"
-        placeholder="Price"
-        class="border p-2 w-full mb-3 rounded">
+      <input type="text" name="price" id="price" placeholder="Price" class="border p-2 w-full mb-3 rounded">
 
-      <input type="number" name="qty" id="qty"
-        placeholder="Quantity"
-        class="border p-2 w-full mb-4 rounded">
+      <input type="number" name="qty" id="qty" placeholder="Quantity" class="border p-2 w-full mb-4 rounded">
 
       <div class="flex justify-end gap-2">
 
-        <button type="button" onclick="closeModal()"
-          class="px-4 py-2 bg-gray-400 text-white rounded">
+        <button type="button" onclick="closeModal()" class="px-4 py-2 bg-gray-400 text-white rounded">
           Cancel
         </button>
 
-        <button type="submit"
-          class="px-4 py-2 bg-green-500 text-white rounded">
+        <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded">
           Save
         </button>
 
