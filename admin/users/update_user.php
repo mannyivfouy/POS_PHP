@@ -15,5 +15,5 @@
 
   mysqli_query($conn, $query);
 
-  header("Location: users.id");
+  header("Location: users.php");
 ?>

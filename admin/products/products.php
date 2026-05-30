@@ -123,7 +123,7 @@ ob_start();
               <td class="p-4">
                 <div class="flex items-center justify-center gap-2">
 
-                  <a href="edit_product.php?id=<?= $row['id'] ?>" onclick="openEditProductModal(
+                  <a href="#" onclick="openEditProductModal(
                       <?= $row['id'] ?>,
                       '<?= addslashes($row['name']) ?>',
                       <?= $row['price'] ?>,

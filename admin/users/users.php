@@ -109,10 +109,11 @@ ob_start();
               <td class="p-4">
                 <div class="flex items-center justify-center gap-2">
 
-                  <a href="edit_user.php?id=<?= $row['id'] ?>" onclick="openEditUserModal(
+                  <a href="#" onclick="openEditUserModal(
                       <?= $row['id'] ?>,
                       '<?= addslashes($row['username']) ?>',
                       '<?= addslashes($row['fullname']) ?>',
+                      '<?= addslashes($row['password']) ?>',
                       '<?= addslashes($row['phone_number']) ?>',
                       '<?= addslashes($row['email']) ?>'                      
                     ); return false;"
@@ -160,7 +161,7 @@ ob_start();
         </label>
         <div class="relative">
           <span class="absolute left-4 top-3 text-gray-400">
-            <i class="fa-solid fa-box"></i>
+            <i class="fa-solid fa-user"></i>
           </span>
 
           <input type="text" name="username" id="username" placeholder="Enter Username"
@@ -174,10 +175,10 @@ ob_start();
         </label>
         <div class="relative">
           <span class="absolute left-4 top-3 text-gray-400">
-            <i class="fa-solid fa-box"></i>
+            <i class="fa-solid fa-address-card"></i>
           </span>
 
-          <input type="text" name="fullname" id="fullname" placeholder="Enter Username"
+          <input type="text" name="fullname" id="fullname" placeholder="Enter Fullname"
             class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
         </div>
       </div>  
@@ -188,10 +189,10 @@ ob_start();
         </label>
         <div class="relative">
           <span class="absolute left-4 top-3 text-gray-400">
-            <i class="fa-solid fa-box"></i>
+            <i class="fa-solid fa-lock"></i>
           </span>
 
-          <input type="text" name="password" id="password" placeholder="Enter Username"
+          <input type="text" name="password" id="password" placeholder="Enter Password"
             class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
         </div>
       </div>  
@@ -202,24 +203,24 @@ ob_start();
         </label>
         <div class="relative">
           <span class="absolute left-4 top-3 text-gray-400">
-            <i class="fa-solid fa-box"></i>
+            <i class="fa-solid fa-phone"></i>
           </span>
 
-          <input type="text" name="phone_number" id="phone_number" placeholder="Enter Username"
+          <input type="text" name="phone_number" id="phone_number" placeholder="Enter Phone Number"
             class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
         </div>
       </div>  
 
       <div>
         <label for="email" class="block mb-2 text-gray-700 font-medium">
-          Phone Number
+          Email
         </label>
         <div class="relative">
           <span class="absolute left-4 top-3 text-gray-400">
-            <i class="fa-solid fa-box"></i>
+            <i class="fa-solid fa-envelope"></i>
           </span>
 
-          <input type="text" name="email" id="email" placeholder="Enter Username"
+          <input type="text" name="email" id="email" placeholder="Enter Email"
             class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
         </div>
       </div>  
