@@ -2,7 +2,7 @@ function getProductModal() {
   return document.getElementById("productModal");
 }
 
-window.openAddModal = function() {
+window.openProductModal = function () {
   const modal = getProductModal();
   if (!modal) return;
 
@@ -15,9 +15,9 @@ window.openAddModal = function() {
   document.getElementById("qty").value = "";
 
   modal.classList.remove("hidden");
-}
+};
 
-window.openEditModal = function(id, name, price, qty) {
+window.openEditProductModal = function (id, name, price, qty) {
   const modal = getProductModal();
   if (!modal) return;
 
@@ -30,11 +30,11 @@ window.openEditModal = function(id, name, price, qty) {
   document.getElementById("qty").value = qty;
 
   modal.classList.remove("hidden");
-}
+};
 
-window.closeModal = function() {
+window.closeProductModal = function () {
   const modal = getProductModal();
   if (!modal) return;
 
   modal.classList.add("hidden");
-}
+};

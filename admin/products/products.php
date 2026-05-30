@@ -22,7 +22,7 @@ ob_start();
     </h1>
   </div>
 
-  <a href="#" onclick="openAddModal(); return false;"
+  <a href="#" onclick="openProductModal(); return false;"
     class="bg-[#20496b] hover:bg-[#17364f] text-white px-5 py-3 rounded-xl font-medium transition">
     <i class="fa-solid fa-plus mr-2"></i>
     Add Product
@@ -123,7 +123,7 @@ ob_start();
               <td class="p-4">
                 <div class="flex items-center justify-center gap-2">
 
-                  <a href="edit_product.php?id=<?= $row['id'] ?>" onclick="openEditModal(
+                  <a href="edit_product.php?id=<?= $row['id'] ?>" onclick="openEditProductModal(
                       <?= $row['id'] ?>,
                       '<?= addslashes($row['name']) ?>',
                       <?= $row['price'] ?>,
@@ -211,7 +211,7 @@ ob_start();
 
       <div class="flex justify-end gap-2">
 
-        <button type="button" onclick="closeModal()" class="px-4 py-2 bg-red-500 text-white rounded">
+        <button type="button" onclick="closeProductModal()" class="px-4 py-2 bg-red-500 text-white rounded">
           Cancel
         </button>
 

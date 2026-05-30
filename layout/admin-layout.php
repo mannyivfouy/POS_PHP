@@ -1,14 +1,20 @@
 <?php
-  // session_start();
+// session_start();
 
-  if(!isset($_SESSION['user_id'])){
-    header("Location: /POS_Final/auth/login.php");
-    exit;
-  }
+if (!isset($_SESSION['user_id'])) {
+  header("Location: /POS_Final/auth/login.php");
+  exit;
+}
+
 ?>
+
+<?php if (isset($pageScript)): ?>
+  <?= $pageScript ?>
+<?php endif; ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,8 +23,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="/POS_Final/assets/css/style.css">
 </head>
+
 <body class="bg-gray-100 min-h-screen flex flex-col">
-  <?php include_once __DIR__ . "/../components/header.php"?>
+  <?php include_once __DIR__ . "/../components/header.php" ?>
 
   <div class="flex flex-1">
     <?php include_once __DIR__ . "/../components/sidebar.php"; ?>
@@ -32,8 +39,7 @@
       </main>
     </div>
   </div>
-
   <script src="/POS_Final/assets/js/products.js"></script>
-  <!-- <script src="/POS_Final/assets/js/users.js"></script> -->
+  <script src="/POS_Final/assets/js/users.js"></script>
 </body>
 </html>

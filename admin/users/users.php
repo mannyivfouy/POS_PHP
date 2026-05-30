@@ -1,17 +1,19 @@
 <?php
-  include_once __DIR__ . "/../../includes/auth.php";
 
-  if (!isset($_SESSION['user_id'])) {
-    header("Location: /POS_Final/auth/login.php");
-    exit;
-  }
+include_once __DIR__ . "/../../includes/auth.php";
 
-  include_once __DIR__ . "/../../config/db.php";
+if (!isset($_SESSION['user_id'])) {
+  header("Location: /POS_Final/auth/login.php");
+  exit;
+}
 
-  $query = "SELECT * FROM users";
-  $result = mysqli_query($conn, $query);
+include_once __DIR__ . "/../../config/db.php";
 
-  ob_start();
+$no = 1;
+$query = "SELECT * FROM users";
+$result = mysqli_query($conn, $query);
+
+ob_start();
 ?>
 
 <div class="flex items-center justify-between mb-6">
@@ -21,12 +23,12 @@
     </h1>
   </div>
 
-  <a href="add-product.php"
+  <button href="#" onclick="openUserModal(); return false;"
     class="bg-[#20496b] hover:bg-[#17364f] text-white px-5 py-3 rounded-xl font-medium transition">
 
     <i class="fa-solid fa-plus mr-2"></i>
     Add User
-  </a>
+  </button>
 </div>
 
 <!-- Product Table -->
@@ -65,7 +67,7 @@
             <tr class="border-b hover:bg-gray-50 transition">
 
               <td class="p-4 font-medium text-gray-700">
-                <?php echo $row['id']; ?>
+                <?php echo $no++; ?>
               </td>
 
               <td class="p-4">
@@ -85,7 +87,7 @@
               </td>
 
               <td class="p-4 text-gray-500">
-                <?php echo $row['fullname']?>
+                <?php echo $row['fullname'] ?>
               </td>
 
               <td class="p-4 text-gray-500">
@@ -107,14 +109,18 @@
               <td class="p-4">
                 <div class="flex items-center justify-center gap-2">
 
-                  <a href="edit-product.php?id=<?php echo $row['id']; ?>"
+                  <a href="edit_user.php?id=<?= $row['id'] ?>" onclick="openEditUserModal(
+                      <?= $row['id'] ?>,
+                      '<?= addslashes($row['username']) ?>',
+                      '<?= addslashes($row['fullname']) ?>',
+                      '<?= addslashes($row['phone_number']) ?>',
+                      '<?= addslashes($row['email']) ?>'                      
+                    ); return false;"
                     class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition">
-
                     <i class="fa-solid fa-pen"></i>
                   </a>
 
-                  <a href="../actions/product/delete.php?id=<?php echo $row['id']; ?>"
-                    onclick="return confirm('Delete this product?')"
+                  <a href="delete_user.php?id=<?= $row['id'] ?>" onclick="return confirm('Delete this user?')"
                     class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition">
 
                     <i class="fa-solid fa-trash"></i>
@@ -137,8 +143,106 @@
   </div>
 </div>
 
-<?php
-  $content = ob_get_clean();
+<!-- Modal -->
+<div id="userModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 
-  include_once __DIR__ . "/../../layout/admin-layout.php";
+  <div class="bg-white w-96 p-6 rounded-2xl shadow-lg">
+
+    <h2 id="modalTitle" class="text-xl font-bold mb-4">Add User</h2>
+
+    <form id="userForm" method="POST">
+
+      <input type="hidden" name="id" id="user_id">
+
+      <div>
+        <label for="username" class="block mb-2 text-gray-700 font-medium">
+          Username
+        </label>
+        <div class="relative">
+          <span class="absolute left-4 top-3 text-gray-400">
+            <i class="fa-solid fa-box"></i>
+          </span>
+
+          <input type="text" name="username" id="username" placeholder="Enter Username"
+            class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
+        </div>
+      </div>        
+
+      <div>
+        <label for="fullname" class="block mb-2 text-gray-700 font-medium">
+          Fullname
+        </label>
+        <div class="relative">
+          <span class="absolute left-4 top-3 text-gray-400">
+            <i class="fa-solid fa-box"></i>
+          </span>
+
+          <input type="text" name="fullname" id="fullname" placeholder="Enter Username"
+            class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
+        </div>
+      </div>  
+
+      <div>
+        <label for="password" class="block mb-2 text-gray-700 font-medium">
+          Password
+        </label>
+        <div class="relative">
+          <span class="absolute left-4 top-3 text-gray-400">
+            <i class="fa-solid fa-box"></i>
+          </span>
+
+          <input type="text" name="password" id="password" placeholder="Enter Username"
+            class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
+        </div>
+      </div>  
+
+      <div>
+        <label for="phone_number" class="block mb-2 text-gray-700 font-medium">
+          Phone Number
+        </label>
+        <div class="relative">
+          <span class="absolute left-4 top-3 text-gray-400">
+            <i class="fa-solid fa-box"></i>
+          </span>
+
+          <input type="text" name="phone_number" id="phone_number" placeholder="Enter Username"
+            class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
+        </div>
+      </div>  
+
+      <div>
+        <label for="email" class="block mb-2 text-gray-700 font-medium">
+          Phone Number
+        </label>
+        <div class="relative">
+          <span class="absolute left-4 top-3 text-gray-400">
+            <i class="fa-solid fa-box"></i>
+          </span>
+
+          <input type="text" name="email" id="email" placeholder="Enter Username"
+            class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
+        </div>
+      </div>  
+
+      <div class="flex justify-end gap-2">
+
+        <button type="button" onclick="closeUserModal()" class="px-4 py-2 bg-red-500 text-white rounded">
+          Cancel
+        </button>
+
+        <button type="submit" class="px-4 py-2 bg-[#20496B] text-white rounded">
+          Save
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+<?php
+$content = ob_get_clean();
+
+include_once __DIR__ . "/../../layout/admin-layout.php";
 ?>
