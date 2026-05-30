@@ -51,6 +51,7 @@ ob_start();
           <th class="p-4">Product</th>
           <th class="p-4">Price</th>
           <th class="p-4">Quantity</th>
+          <th class="p-4">Amount</th>
           <th class="p-4">Created At</th>
           <th class="p-4">Updated At</th>
           <th class="p-4 text-center">Action</th>
@@ -64,7 +65,7 @@ ob_start();
             <tr class="border-b hover:bg-gray-50 transition">
 
               <td class="p-4 font-medium text-gray-700">
-                <?php echo $no++ ; ?>
+                <?php echo $no++; ?>
               </td>
 
               <td class="p-4">
@@ -106,6 +107,11 @@ ob_start();
                 <?php } ?>
               </td>
 
+              <td class="p-4">
+                $
+                <?php echo $row['amount'] ?>
+              </td>
+
               <td class="p-4 text-gray-500">
                 <?php echo date('d M Y', strtotime($row['created_at'])); ?>
               </td>
@@ -125,13 +131,13 @@ ob_start();
                     ); return false;"
                     class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition">
                     <i class="fa-solid fa-pen"></i>
-                  <a>
+                    <a>
 
-                  <a href="delete_product.php?id=<?= $row['id'] ?>" onclick="return confirm('Delete this product?')"
-                    class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition">
+                      <a href="delete_product.php?id=<?= $row['id'] ?>" onclick="return confirm('Delete this product?')"
+                        class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition">
 
-                    <i class="fa-solid fa-trash"></i>
-                  </a>
+                        <i class="fa-solid fa-trash"></i>
+                      </a>
                 </div>
               </td>
             </tr>
@@ -161,19 +167,55 @@ ob_start();
 
       <input type="hidden" name="id" id="product_id">
 
-      <input type="text" name="name" id="name" placeholder="Product Name" class="border p-2 w-full mb-3 rounded">
+      <div>
+        <label for="name" class="block mb-2 text-gray-700 font-medium">
+          Product Name
+        </label>
+        <div class="relative">
+          <span class="absolute left-4 top-3 text-gray-400">
+            <i class="fa-solid fa-box"></i>
+          </span>
 
-      <input type="text" name="price" id="price" placeholder="Price" class="border p-2 w-full mb-3 rounded">
+          <input type="text" name="name" id="name" placeholder="Enter Product Name"
+            class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
+        </div>
+      </div>
 
-      <input type="number" name="qty" id="qty" placeholder="Quantity" class="border p-2 w-full mb-4 rounded">
+      <div>
+        <label for="price" class="block mb-2 text-gray-700 font-medium">
+          Product Price
+        </label>
+        <div class="relative">
+          <span class="absolute left-4 top-3 text-gray-400">
+            <i class="fa-solid fa-dollar-sign"></i>
+          </span>
+
+          <input type="text" name="name" id="price" placeholder="Enter Product Name"
+            class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
+        </div>
+      </div>
+
+      <div>
+        <label for="qty" class="block mb-2 text-gray-700 font-medium">
+          Product Price
+        </label>
+        <div class="relative">
+          <span class="absolute left-4 top-3 text-gray-400">
+            <i class="fa-solid fa-0"></i>
+          </span>
+
+          <input type="text" name="qty" id="qty" placeholder="Enter Product Quantity"
+            class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
+        </div>
+      </div>
 
       <div class="flex justify-end gap-2">
 
-        <button type="button" onclick="closeModal()" class="px-4 py-2 bg-gray-400 text-white rounded">
+        <button type="button" onclick="closeModal()" class="px-4 py-2 bg-red-500 text-white rounded">
           Cancel
         </button>
 
-        <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded">
+        <button type="submit" class="px-4 py-2 bg-[#20496B] text-white rounded">
           Save
         </button>
 
