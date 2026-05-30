@@ -1,4 +1,11 @@
-function openAddModal() {
+function getProductModal() {
+  return document.getElementById("productModal");
+}
+
+window.openAddModal = function() {
+  const modal = getProductModal();
+  if (!modal) return;
+
   document.getElementById("productForm").action = "store_product.php";
   document.getElementById("modalTitle").innerText = "Add Product";
 
@@ -7,10 +14,13 @@ function openAddModal() {
   document.getElementById("price").value = "";
   document.getElementById("qty").value = "";
 
-  document.getElementById("productModal").classList.remove("hidden");
+  modal.classList.remove("hidden");
 }
 
-function openEditModal(id, name, price, qty) {
+window.openEditModal = function(id, name, price, qty) {
+  const modal = getProductModal();
+  if (!modal) return;
+
   document.getElementById("productForm").action = "update_product.php";
   document.getElementById("modalTitle").innerText = "Edit Product";
 
@@ -19,9 +29,12 @@ function openEditModal(id, name, price, qty) {
   document.getElementById("price").value = price;
   document.getElementById("qty").value = qty;
 
-  document.getElementById("productModal").classList.remove("hidden");
+  modal.classList.remove("hidden");
 }
 
-function closeModal() {
-  document.getElementById("productModal").classList.add("hidden");
+window.closeModal = function() {
+  const modal = getProductModal();
+  if (!modal) return;
+
+  modal.classList.add("hidden");
 }

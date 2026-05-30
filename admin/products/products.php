@@ -22,7 +22,7 @@ ob_start();
     </h1>
   </div>
 
-  <a href="add_product.php" onclick="openAddModal(); return false;"
+  <a href="#" onclick="openAddModal(); return false;"
     class="bg-[#20496b] hover:bg-[#17364f] text-white px-5 py-3 rounded-xl font-medium transition">
     <i class="fa-solid fa-plus mr-2"></i>
     Add Product
