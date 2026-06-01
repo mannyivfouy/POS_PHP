@@ -167,7 +167,7 @@ ob_start();
           <input type="text" name="username" id="username" placeholder="Enter Username"
             class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
         </div>
-      </div>        
+      </div>
 
       <div>
         <label for="fullname" class="block mb-2 text-gray-700 font-medium">
@@ -181,7 +181,7 @@ ob_start();
           <input type="text" name="fullname" id="fullname" placeholder="Enter Fullname"
             class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
         </div>
-      </div>  
+      </div>
 
       <div>
         <label for="password" class="block mb-2 text-gray-700 font-medium">
@@ -192,10 +192,15 @@ ob_start();
             <i class="fa-solid fa-lock"></i>
           </span>
 
-          <input type="text" name="password" id="password" placeholder="Enter Password"
+          <input type="text" name="password" id="password" placeholder="Enter Password" id="password"
             class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
+
+          <button type="button" onclick="togglePassword()"
+            class="absolute right-4 top-3 text-gray-500 hover:text-gray-700">
+            <i id="eyeIcon" class="fa-solid fa-eye"></i>
+          </button>
         </div>
-      </div>  
+      </div>
 
       <div>
         <label for="phone_number" class="block mb-2 text-gray-700 font-medium">
@@ -209,7 +214,7 @@ ob_start();
           <input type="text" name="phone_number" id="phone_number" placeholder="Enter Phone Number"
             class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
         </div>
-      </div>  
+      </div>
 
       <div>
         <label for="email" class="block mb-2 text-gray-700 font-medium">
@@ -223,7 +228,7 @@ ob_start();
           <input type="text" name="email" id="email" placeholder="Enter Email"
             class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
         </div>
-      </div>  
+      </div>
 
       <div class="flex justify-end gap-2">
 
@@ -241,6 +246,23 @@ ob_start();
 
   </div>
 </div>
+
+<script>
+  function togglePassword() {
+    const input = document.getElementById("password");
+    const icon = document.getElementById("eyeIcon");
+
+    if (input.type === "password") {
+      input.type = "text";
+      icon.classList.remove("fa-eye");
+      icon.classList.add("fa-eye-slash")
+    } else {
+      input.type = "password";
+      icon.classList.remove("fa-eye-slash")
+      icon.classList.add("fa-eye");
+    }
+  }
+</script>
 
 <?php
 $content = ob_get_clean();
