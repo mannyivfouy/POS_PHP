@@ -103,8 +103,13 @@ if (isset($_POST['login'])) {
                   <i class="fa-solid fa-lock"></i>
                 </span>
 
-                <input type="text" name="password" placeholder="Enter Password"
+                <input type="text" name="password" placeholder="Enter Password" id="password"
                   class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-12">
+
+                <button type="button" onclick="togglePassword()"
+                  class="absolute right-4 top-3 text-gray-500 hover:text-gray-700">
+                  <i id="eyeIcon" class="fa-solid fa-eye"></i>
+                </button>
               </div>
             </div>
 
@@ -117,6 +122,23 @@ if (isset($_POST['login'])) {
       </div>
     </div>
   </div>
+
+  <script>
+    function togglePassword() {
+      const input = document.getElementById("password");
+      const icon = document.getElementById("eyeIcon");
+
+      if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash")
+      } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash")
+        icon.classList.add("fa-eye");
+      }
+    }
+  </script>
 </body>
 
 </html>
