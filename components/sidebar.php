@@ -1,8 +1,9 @@
 <?php
-  $current_page = basename($_SERVER['PHP_SELF']);
+$current_page = basename($_SERVER['PHP_SELF']);
+$username = $_SESSION['username'] ?? 'Admin';
 ?>
 
-<div class="w-64 bg-[#20496b] text-white p-6">
+<div class="w-64 bg-[#20496b] text-white p-6 flex flex-col">
   <h1 class="text-2xl font-bold mb-10 text-center">
     POS SYSTEM
   </h1>
@@ -34,23 +35,20 @@
         Products
       </a>
     </li>
-
-    <!-- <li>
-      <a href="pos.php" class="flex items-center gap-3 p-3 rounded-lg transition
-         <?= $current_page == 'pos.php' ? 'bg-white/20' : 'hover:bg-white/10' ?>">
-
-        <i class="fa-solid fa-cart-shopping"></i>
-        POS
-      </a>
-    </li> -->
-
-    <!-- <li>
-      <a href="orders.php" class="flex items-center gap-3 p-3 rounded-lg transition
-         <?= $current_page == 'orders.php' ? 'bg-white/20' : 'hover:bg-white/10' ?>">
-
-        <i class="fa-solid fa-cart-shopping"></i>
-        Orders
-      </a>
-    </li> -->
   </ul>
+
+  <div class="mt-auto bg-white/10 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-white/20">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+        <i class="fa-solid fa-user"></i>
+      </div>
+
+      <div>
+        <p class="text-xs text-gray-300">Logged in as</p>
+        <p class="font-semibold text-white">
+          <?= htmlspecialchars($username) ?>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
