@@ -5,10 +5,6 @@
   
 
   <div class="flex items-center gap-4">
-
-    <a href="/POS_Final/auth/logout.php" class="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600">
-      <i class="fa-sharp fa-solid fa-arrow-right-from-bracket mr-2"></i>
-      Logout
-    </a>
+        
   </div>
 </div>

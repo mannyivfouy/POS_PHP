@@ -38,6 +38,7 @@ $username = $_SESSION['username'] ?? 'Admin';
   </ul>
 
   <div class="mt-auto bg-white/10 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-white/20">
+
     <div class="flex items-center gap-3">
       <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
         <i class="fa-solid fa-user"></i>
@@ -50,5 +51,14 @@ $username = $_SESSION['username'] ?? 'Admin';
         </p>
       </div>
     </div>
+
+    <div class="mt-4 pt-4 border-t border-white/20">
+      <a href="/POS_Final/auth/logout.php"
+        class="flex items-center justify-center w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg transition">
+        <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>
+        Logout
+      </a>
+    </div>
+
   </div>
 </div>
