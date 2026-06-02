@@ -13,7 +13,7 @@ $username = $_SESSION['username'] ?? 'Admin';
       <a href="/POS_Final/admin/dashboard.php" class="flex items-center gap-3 p-3 rounded-lg transition
         <?= $current_page == 'dashboard.php' ? 'bg-white/20' : 'hover:bg-white/10' ?>">
 
-        <i class="fa-solid fa-gauge"></i>
+        <i class="fa-solid fa-grip"></i>
         Dashboard
       </a>
     </li>
@@ -33,6 +33,15 @@ $username = $_SESSION['username'] ?? 'Admin';
 
         <i class="fa-solid fa-box"></i>
         Products
+      </a>
+    </li>
+    
+    <li>
+      <a href="/POS_Final/admin/pos/pos.php" class="flex items-center gap-3 p-3 rounded-lg transition
+        <?= $current_page == 'pos.php' ? 'bg-white/20' : 'hover:bg-white/10' ?>">
+
+        <i class="fa-solid fa-cart-shopping"></i>
+        POS
       </a>
     </li>
   </ul>
