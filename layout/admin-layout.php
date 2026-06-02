@@ -34,12 +34,12 @@ if (!isset($_SESSION['user_id'])) {
 
       <?php include_once __DIR__ . "/../components/navbar.php"; ?>
 
-      <main class="p-6">
+      <main class="flex-1 p-6 overflow-hidden">
         <?php echo $content ?? ''; ?>
       </main>
     </div>
   </div>
   <script src="/POS_Final/assets/js/products.js"></script>
-  <script src="/POS_Final/assets/js/users.js"></script>
+  <script src="/POS_Final/assets/js/users.js"></script>  
 </body>
 </html>

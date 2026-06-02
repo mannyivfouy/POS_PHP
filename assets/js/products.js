@@ -38,3 +38,62 @@ window.closeProductModal = function () {
 
   modal.classList.add("hidden");
 };
+
+let cart = []; // ✅ GLOBAL
+
+window.addEventListener("DOMContentLoaded", function () {
+  window.addToCart = function (id, name, price, qty) {
+    console.log("ADD TO CART WORKS:", id);
+
+    const existing = cart.find((item) => item.id === id);
+
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({
+        id,
+        name,
+        price,
+        qty: 1,
+      });
+    }
+
+    renderCart();
+  };
+});
+
+window.renderCart = function() {
+  const cartBox = document.getElementById("cart-items");
+  const subtotalBox = document.getElementById("subtotal");
+
+  cartBox.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach((item) => {
+    total += item.price * item.qty;
+
+    cartBox.innerHTML += `
+      <div class="flex justify-between border-b py-2">
+        <div>
+          <p class="font-medium">${item.name}</p>
+          <p class="text-sm text-gray-500">
+            $${item.price} x ${item.qty}            
+          </p>
+        </div>
+
+        <button onclick="removeItem(${item.id})"
+          class="text-red-500 text-sm">
+            <i class="fa-solid fa-x"></i>
+        </button>
+      </div>
+    `;
+  });
+
+  subtotalBox.innerText = "$" + total.toFixed(2);
+}
+
+window.removeItem = function (id) {
+  cart = cart.filter((item) => item.id !== id);
+  renderCart();
+};
