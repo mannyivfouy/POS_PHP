@@ -71,8 +71,13 @@ ob_start();
               <td class="p-4">
                 <div class="flex items-center gap-3">
 
-                  <div class="w-12 h-12 bg-gray-200 rounded-xl flex items-center justify-center text-gray-500">
-                    <i class="fa-solid fa-box"></i>
+                  <div class="w-12 h-12 rounded-xl overflow-hidden bg-gray-200 flex items-center justify-center">
+                    <?php if (!empty($row['image'])): ?>
+                      <img src="/POS_Final/uploads/products/<?= htmlspecialchars($row['image']) ?>"
+                        class="w-full h-full object-cover" alt="<?= htmlspecialchars($row['name']) ?>">
+                    <?php else: ?>
+                      <i class="fa-solid fa-box text-gray-500"></i>
+                    <?php endif; ?>
                   </div>
 
                   <div>
@@ -127,7 +132,8 @@ ob_start();
                       <?= $row['id'] ?>,
                       '<?= addslashes($row['name']) ?>',
                       <?= $row['price'] ?>,
-                      <?= $row['qty'] ?>
+                      <?= $row['qty'] ?>,
+                      '<?= addslashes($row['image'] ?? '') ?>'
                     ); return false;"
                     class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition">
                     <i class="fa-solid fa-pen"></i>
@@ -163,7 +169,7 @@ ob_start();
 
     <h2 id="modalTitle" class="text-xl font-bold mb-4">Add Product</h2>
 
-    <form id="productForm" method="POST">
+    <form id="productForm" method="POST" enctype="multipart/form-data">
 
       <input type="hidden" name="id" id="product_id">
 
@@ -179,6 +185,21 @@ ob_start();
           <input type="text" name="name" id="name" placeholder="Enter Product Name"
             class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
         </div>
+      </div>
+
+      <div>
+        <label for="image" class="block mb-2 text-gray-700 font-medium">
+          Product Image
+        </label>
+        <div class="relative">
+          <span class="absolute left-4 top-3 text-gray-400">
+            <i class="fa-solid fa-image"></i>
+          </span>
+          <input type="file" name="image" id="image" accept="image/*"
+            class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b] mb-5">
+        </div>
+        <!-- preview for edit mode -->
+        <img id="image_preview" src="" alt="Current image" class="hidden w-20 h-20 object-cover rounded-xl mb-3">
       </div>
 
       <div>

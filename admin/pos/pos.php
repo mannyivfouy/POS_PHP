@@ -30,7 +30,14 @@ ob_start();
       <div class="grid grid-cols-4 gap-4">
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
           <div class="border rounded-xl p-4 hover:shadow-md cursor-pointer transition">
-            <div class="h-32 bg-gray-100 rounded-lg mb-3"></div>
+            <div class="h-32 bg-gray-100 rounded-lg mb-3 flex justify-center items-center">
+              <?php if (!empty($row['image'])): ?>
+                <img src="/POS_Final/uploads/products/<?= htmlspecialchars($row['image']) ?>"
+                  class="w-full h-full object-contain" alt="<?= htmlspecialchars($row['name']) ?>">
+              <?php else: ?>
+                <i class="fa-solid fa-box text-3xl text-gray-500"></i>
+              <?php endif; ?>
+            </div>
 
             <h3 class="font-semibold text-gray-800">
               <?= htmlspecialchars($row['name']) ?>
@@ -44,12 +51,10 @@ ob_start();
               $<?= number_format($row['price'], 2) ?>
             </p>
 
-            <button
-  onclick="addToCart(<?= $row['id'] ?>, '<?= addslashes($row['name']) ?>', <?= $row['price'] ?>)"
-  class="mt-auto bg-[#20496b] text-white py-2 px-2 rounded-lg hover:bg-[#18374f]"
->
-  Add to Cart
-</button>
+            <button onclick="addToCart(<?= $row['id'] ?>, '<?= addslashes($row['name']) ?>', <?= $row['price'] ?>)"
+              class="mt-auto bg-[#20496b] text-white py-2 px-2 rounded-lg hover:bg-[#18374f]">
+              Add to Cart
+            </button>
           </div>
         <?php endwhile; ?>
       </div>
