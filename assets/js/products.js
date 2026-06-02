@@ -11,13 +11,14 @@ window.openProductModal = function () {
 
   document.getElementById("product_id").value = "";
   document.getElementById("name").value = "";
+  document.getElementById("image").value = "";
   document.getElementById("price").value = "";
   document.getElementById("qty").value = "";
 
   modal.classList.remove("hidden");
 };
 
-window.openEditProductModal = function (id, name, price, qty) {
+window.openEditProductModal = function (id, name, price, qty, image) {
   const modal = getProductModal();
   if (!modal) return;
 
@@ -26,8 +27,18 @@ window.openEditProductModal = function (id, name, price, qty) {
 
   document.getElementById("product_id").value = id;
   document.getElementById("name").value = name;
+  document.getElementById("image").value = "";
   document.getElementById("price").value = price;
   document.getElementById("qty").value = qty;
+
+  const preview = document.getElementById("image_preview");
+  if (image) {
+    preview.src = "/POS_Final/uploads/products/" + image;
+    preview.classList.remove("hidden");
+  } else {
+    preview.src = "";
+    preview.classList.add("hidden");
+  }
 
   modal.classList.remove("hidden");
 };
@@ -62,7 +73,7 @@ window.addEventListener("DOMContentLoaded", function () {
   };
 });
 
-window.renderCart = function() {
+window.renderCart = function () {
   const cartBox = document.getElementById("cart-items");
   const subtotalBox = document.getElementById("subtotal");
 
@@ -91,7 +102,7 @@ window.renderCart = function() {
   });
 
   subtotalBox.innerText = "$" + total.toFixed(2);
-}
+};
 
 window.removeItem = function (id) {
   cart = cart.filter((item) => item.id !== id);
