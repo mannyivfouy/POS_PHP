@@ -26,7 +26,7 @@ ob_start();
   <div class="grid grid-cols-12 gap-6 flex-1 min-h-0">
 
     <!-- Products -->
-    <div class="col-span-8 bg-white rounded-2xl shadow-sm p-6 overflow-y-auto">
+    <div class="col-span-8 bg-white rounded-2xl shadow-sm p-6 overflow-y-scroll h-[780px]">
       <div class="grid grid-cols-4 gap-4">
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
           <div class="border rounded-xl p-4 hover:shadow-md cursor-pointer transition">
@@ -61,7 +61,7 @@ ob_start();
     </div>
 
     <!-- Cart -->
-    <div class="col-span-4 bg-white rounded-2xl shadow-sm p-6 flex flex-col">
+    <div class="col-span-4 bg-white rounded-2xl shadow-sm p-6 flex flex-col overflow-y-scroll h-[780px]">
 
       <h2 class="text-xl font-semibold mb-4">Current Order</h2>
 

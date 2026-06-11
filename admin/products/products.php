@@ -43,9 +43,9 @@ ob_start();
     </div>
   </div> -->
 
-  <div class="overflow-x-auto">
+  <div class="overflow-x-auto max-h-[750px] overflow-y-auto">
     <table class="w-full">
-      <thead class="bg-gray-200">
+      <thead class="bg-gray-200 sticky top-0">
         <tr class="text-left text-gray-600 text-sm uppercase">
           <th class="p-4">#</th>
           <th class="p-4">Product</th>

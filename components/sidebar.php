@@ -35,13 +35,22 @@ $username = $_SESSION['username'] ?? 'Admin';
         Products
       </a>
     </li>
-    
+
     <li>
       <a href="/POS_Final/admin/pos/pos.php" class="flex items-center gap-3 p-3 rounded-lg transition
         <?= $current_page == 'pos.php' ? 'bg-white/20' : 'hover:bg-white/10' ?>">
 
         <i class="fa-solid fa-cart-shopping"></i>
         POS
+      </a>
+    </li>
+
+    <li>
+      <a href="/POS_Final/admin/sale_report/sale_report.php" class="flex items-center gap-3 p-3 rounded-lg transition
+        <?= $current_page == 'sale_report.php' ? 'bg-white/20' : 'hover:bg-white/10' ?>">
+
+        <i class="fa-solid fa-receipt"></i>
+        Sales Report
       </a>
     </li>
   </ul>

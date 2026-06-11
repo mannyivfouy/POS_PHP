@@ -23,7 +23,8 @@
   <!-- Users Card -->
   <div class="bg-white rounded-2xl shadow-sm p-6 w-64">
     <div class="text-gray-500 text-sm">Total Users</div>
-    <div class="text-3xl font-bold text-gray-800 mt-2">
+    <div class="text-3xl font-bold text-gray-800 mt-2 flex justify-between">
+      <i class="fa-solid fa-users text-[#20496B]"></i>
       <?= $totalUsers ?>
     </div>
   </div>
@@ -31,7 +32,8 @@
   <!-- Products Card -->
   <div class="bg-white rounded-2xl shadow-sm p-6 w-64">
     <div class="text-gray-500 text-sm">Total Products</div>
-    <div class="text-3xl font-bold text-gray-800 mt-2">
+    <div class="text-3xl font-bold text-gray-800 mt-2 flex justify-between">
+      <i class="fa-solid fa-box text-[#20496B]"></i>
       <?= $totalProducts ?>
     </div>
   </div>
