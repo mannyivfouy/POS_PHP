@@ -77,7 +77,7 @@ ob_start();
           <span id="subtotal">$0.00</span>
         </div>
 
-        <button class="w-full mt-4 bg-[#20496b] text-white py-3 rounded-xl">
+        <button onclick="checkout()" class="w-full mt-4 bg-[#20496b] text-white py-3 rounded-xl">
           Checkout
         </button>
       </div>
@@ -85,9 +85,70 @@ ob_start();
     </div>
 
   </div>
+</div>
 
-  <?php
-  $content = ob_get_clean();
+<script>
+  function checkout() {
+    let cart = JSON.parse(localStorage.getItem("pos_cart")) || [];
 
-  include_once __DIR__ . "/../../layout/admin-layout.php";
-  ?>
+    if (cart.length === 0) {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'warning',
+        title: 'Cart Is Empty',
+        showConfirmButton: false,
+        timer: 1500,
+        toast: true
+      });
+      return;
+    }
+
+    fetch("checkout.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ cart })
+    })
+      .then(res => res.json())
+      .then(data => {
+
+        if (data.success) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Checkout Complete',
+            showConfirmButton: false,
+            timer: 1500,
+            toast: true
+          });
+
+          localStorage.removeItem("pos_cart");
+
+          setTimeout(() => {
+            location.reload();
+          }, 1500);
+
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Checkout Failed"
+          });
+        }
+
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Server Error"
+        });
+      });
+  }
+</script>
+
+
+<?php
+$content = ob_get_clean();
+
+include_once __DIR__ . "/../../layout/admin-layout.php";
+?>
