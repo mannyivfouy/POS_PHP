@@ -46,7 +46,7 @@ $username = $_SESSION['username'] ?? 'Admin';
     </li>
 
     <li>
-      <a href="/POS_Final/admin/sale_report/sale_report.php" class="flex items-center gap-3 p-3 rounded-lg transition
+      <a href="/POS_Final/admin/report/sale_report.php" class="flex items-center gap-3 p-3 rounded-lg transition
         <?= $current_page == 'sale_report.php' ? 'bg-white/20' : 'hover:bg-white/10' ?>">
 
         <i class="fa-solid fa-receipt"></i>

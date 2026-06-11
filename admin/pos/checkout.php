@@ -15,27 +15,56 @@ if (!isset($data['cart'])) {
 
 $cart = $data['cart'];
 
+$total = 0;
+
+// Create sale record first
+mysqli_query($conn, "INSERT INTO sales (total) VALUES (0)");
+$sale_id = mysqli_insert_id($conn);
+
 foreach ($cart as $item) {
 
     $id = (int) $item['id'];
+    $name = mysqli_real_escape_string($conn, $item['name']);
+    $price = (float) $item['price'];
     $qty = (int) $item['qty'];
 
-    // IMPORTANT: prevent negative stock
-    $query = "UPDATE products 
-              SET qty = qty - $qty 
-              WHERE id = $id AND qty >= $qty";
+    $subtotal = $price * $qty;
+    $total += $subtotal;
+
+    // Save sale item
+    mysqli_query($conn, "
+        INSERT INTO sale_items
+        (sale_id, product_id, product_name, price, qty, subtotal)
+        VALUES
+        ($sale_id, $id, '$name', $price, $qty, $subtotal)
+    ");
+
+    // Update stock
+    $query = "
+        UPDATE products
+        SET qty = qty - $qty
+        WHERE id = $id AND qty >= $qty
+    ";
 
     $result = mysqli_query($conn, $query);
 
     if (!$result) {
         echo json_encode([
             "success" => false,
-            "message" => "SQL error: " . mysqli_error($conn)
+            "message" => mysqli_error($conn)
         ]);
         exit;
     }
 }
 
+// Update sale total
+mysqli_query($conn, "
+    UPDATE sales
+    SET total = $total
+    WHERE id = $sale_id
+");
+
 echo json_encode([
-    "success" => true
+    "success" => true,
+    "sale_id" => $sale_id
 ]);

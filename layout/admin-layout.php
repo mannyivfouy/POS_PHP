@@ -23,6 +23,7 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="/POS_Final/assets/css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body class="bg-gray-100 min-h-screen flex flex-col">
@@ -41,6 +42,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
   </div>
   <script src="/POS_Final/assets/js/products.js"></script>
-  <script src="/POS_Final/assets/js/users.js"></script>  
+  <script src="/POS_Final/assets/js/users.js"></script>
 </body>
+
 </html>
