@@ -165,7 +165,7 @@ ob_start();
 <!-- Modal -->
 <div id="productModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 
-  <div class="bg-white w-96 p-6 rounded-2xl shadow-lg">
+  <div class="bg-white w-[900px] p-6 rounded-2xl shadow-lg">
 
     <h2 id="modalTitle" class="text-xl font-bold mb-4">Add Product</h2>
 

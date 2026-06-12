@@ -62,7 +62,7 @@ ob_start();
 <!-- Sale Modal -->
 <div id="saleModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 
-  <div class="bg-white w-[600px] p-6 rounded-2xl shadow-lg">
+  <div class="bg-white w-[900px] p-6 rounded-2xl shadow-lg">
 
     <div class="flex justify-between items-center mb-4">
       <h2 class="text-xl font-bold">Sale Details</h2>
@@ -91,14 +91,15 @@ ob_start();
         let html = `
           <div class="mb-6 border-b pb-4">
             
-            <div class="flex justify-between items-center mb-2">
-              <h2 class="text-lg font-bold text-gray-800">Sale Receipt</h2>
+            <div class="flex items-center mb-2">
+              <h2 class="text-lg font-bold text-gray-800 mr-3">Sale Receipt</h2>
               <span class="text-sm text-gray-500">#${data.sale.id}</span>
             </div>
 
-            <p class="text-sm text-gray-600">
-              Date: <span class="font-medium">${data.sale.created_at}</span>
-            </p>
+            <div class="flex items-center mb-2>
+              <h2 class="text-lg font-bold text-gray-800 mr-3"> Date </h2>
+              <span class="text-sm text-gray-500">${data.sale.created_at}</span>
+            </div>
 
             <p class="text-lg font-bold text-[#20496B] mt-2">
               Total: $${data.sale.total}
