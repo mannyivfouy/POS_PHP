@@ -29,6 +29,8 @@ ob_start();
     <div class="col-span-8 bg-white rounded-2xl shadow-sm p-6 overflow-y-scroll h-[780px]">
       <div class="grid grid-cols-4 gap-4">
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
+          <?php if ($row['qty'] < 1)
+            continue; ?>
           <div class="border rounded-xl p-4 hover:shadow-md cursor-pointer transition">
             <div class="h-32 bg-gray-100 rounded-lg mb-3 flex justify-center items-center">
               <?php if (!empty($row['image'])): ?>

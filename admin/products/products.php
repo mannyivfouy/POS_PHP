@@ -31,18 +31,6 @@ ob_start();
 
 <!-- Product Table -->
 <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
-
-  <!-- <div class="p-5 border-b">
-    <div class="relative w-80">
-      <span class="absolute left-4 top-3 text-gray-400">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </span>
-
-      <input type="text" placeholder="Search product..."
-        class="w-full border border-gray-300 rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:ring-2 focus:ring-[#20496b]">
-    </div>
-  </div> -->
-
   <div class="overflow-x-auto max-h-[750px] overflow-y-auto">
     <table class="w-full">
       <thead class="bg-gray-200 sticky top-0">

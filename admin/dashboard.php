@@ -1,19 +1,22 @@
 <?php
-  include_once __DIR__ . "/../includes/auth.php";
-  include_once __DIR__ . "/../config/db.php";
+include_once __DIR__ . "/../includes/auth.php";
+include_once __DIR__ . "/../config/db.php";
 
-  $userResult = mysqli_query($conn, "SELECT COUNT(*) AS Total FROM users");
-  $totalUsers = mysqli_fetch_assoc($userResult)['Total'];
+$userResult = mysqli_query($conn, "SELECT COUNT(*) AS Total FROM users");
+$totalUsers = mysqli_fetch_assoc($userResult)['Total'];
 
-  $productResult = mysqli_query($conn, "SELECT COUNT(*) AS Total FROM products");
-  $totalProducts = mysqli_fetch_assoc($productResult)['Total'];
+$productResult = mysqli_query($conn, "SELECT COUNT(*) AS Total FROM products");
+$totalProducts = mysqli_fetch_assoc($productResult)['Total'];
 
-  $saleResult = mysqli_query($conn, "SELECT COUNT(*) AS Total FROM sales");
-  $totalSales = mysqli_fetch_assoc($saleResult)['Total'];
+$saleResult = mysqli_query($conn, "SELECT COUNT(*) AS Total FROM sales");
+$totalSales = mysqli_fetch_assoc($saleResult)['Total'];
 
-  $totalIncomeResult = mysqli_query($conn, "SELECT SUM(total) AS Total FROM sales");
-  $totalIncome = mysqli_fetch_assoc($totalIncomeResult)['Total'];
-  ob_start();
+$totalIncomeResult = mysqli_query($conn, "SELECT SUM(total) AS Total FROM sales");
+$totalIncome = mysqli_fetch_assoc($totalIncomeResult)['Total'];
+
+$totalExpenseResult = mysqli_query($conn, "SELECT SUM(amount) AS Total FROM expenses");
+$totalExpenses = mysqli_fetch_assoc($totalExpenseResult)['Total'];
+ob_start();
 ?>
 
 <div class="flex items-center justify-between mb-6">
@@ -53,18 +56,26 @@
     </div>
   </div>
 
+  <!-- Income Card -->
   <div class="bg-white rounded-2xl shadow-sm p-6 w-64">
     <div class="text-gray-500 text-sm">Total Income</div>
     <div class="text-3xl font-bold text-gray-800 mt-2 flex justify-between">
-      <i class="fa-solid fa-money-bill-trend-up text-[#20496B]"></i>
+      <i class="fa-solid fa-arrow-trend-up text-green-600"></i>
       $ <?= $totalIncome ?>
     </div>
   </div>
 
+  <!-- Expense Card -->
+  <div class="bg-white rounded-2xl shadow-sm p-6 w-64">
+    <div class="text-gray-500 text-sm">Total Expense</div>
+    <div class="text-3xl font-bold text-gray-800 mt-2 flex justify-between">
+      <i class="fa-solid fa-arrow-trend-down text-red-600"></i>
+      $ <?= $totalExpenses ?>
+    </div>
+  </div>
 </div>
 
 <?php
-  $content = ob_get_clean();
-  include_once __DIR__ . "/../layout/admin-layout.php";
+$content = ob_get_clean();
+include_once __DIR__ . "/../layout/admin-layout.php";
 ?>
-

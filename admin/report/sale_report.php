@@ -8,8 +8,9 @@ if (!isset($_SESSION['user_id'])) {
 
 include_once __DIR__ . "/../../config/db.php";
 
-$query = "SELECT * FROM sales";
+$query = "SELECT * FROM sales ORDER BY id DESC";
 $result = mysqli_query($conn, $query);
+$no = 1;
 
 ob_start();
 ?>
@@ -38,7 +39,7 @@ ob_start();
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
           <tr class="border-t">
             <td class="p-4">
-              <?= $row['id'] ?>
+              <?php echo $no++ ; ?>
             </td>
             <td class="p-4">$
               <?= $row['total'] ?>
